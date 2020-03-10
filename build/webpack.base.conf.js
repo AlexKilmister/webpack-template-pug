@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin')
 
 // Main const
 const PATHS = {
@@ -54,7 +55,7 @@ module.exports = {
         },
         // this applies to pug imports inside JavaScript
         {
-          use: ['pug-loader']
+          use: ['pug-loader?pretty=true'],
         }
       ]
     }, {
@@ -76,7 +77,7 @@ module.exports = {
         name: '[name].[ext]'
       }
     }, {
-      test: /\.(png|jpg|gif|svg)$/,
+      test: /\.(png|jpe?g|gif|svg|ico)$/,
       loader: 'file-loader',
       options: {
         name: '[name].[ext]'
@@ -110,7 +111,8 @@ module.exports = {
           options: { sourceMap: true, config: { path: `./postcss.config.js` } }
         }
       ]
-    }]
+    }
+    ]
   },
   resolve: {
     alias: {
@@ -128,11 +130,43 @@ module.exports = {
       { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
       { from: `${PATHS.src}/static`, to: '' },
     ]),
+    new SVGSpritemapPlugin(`${PATHS.src}/${PATHS.assets}img/icons-svg/**/*.svg`, {
+      output: {
+        svg: {
+          // Disable `width` and `height` attributes on the root SVG element
+          // as these will skew the sprites when using the <view> via fragment identifiers
+          sizes: false
+        },
+        svg4everybody: true,
+        filename: 'assets/img/spriteSvg.svg'
+      },
+      sprite: {
+        generate: {
+          // Generate <use> tags within the spritemap as the <view> tag will use this
+          use: true,
+
+          // Generate <view> tags within the svg to use in css via fragment identifier url
+          // and add -fragment suffix for the identifier to prevent naming colissions with the symbol identifier
+          view: '-fragment',
+
+          // Generate <symbol> tags within the SVG to use in HTML via <use> tag
+          symbol: true
+        },
+      },
+      styles: {
+        // Specifiy that we want to use URLs with fragment identifiers in a styles file as well
+        format: 'fragment',
+
+        // Path to the styles file, note that this method uses the `output.publicPath` webpack option
+        // to generate the path/URL to the spritemap itself so you might have to look into that
+        //filename: path.join(__dirname, 'src/scss/_sprites.scss')
+      }
+    }),
 
     // Automatic creation any html pages (Don't forget to RERUN dev server)
     ...PAGES.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
       filename: `./${page.replace(/\.pug/,'.html')}`
     }))
-  ],
+  ]
 }

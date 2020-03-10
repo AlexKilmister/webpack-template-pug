@@ -2,3 +2,15 @@ mixin item(title, descr)
   .item
     h2.item-title= title
     p.item-descr= descr
+
+mixin icon(name,mod)
+  - mod = mod || ''
+  svg(class="svg-icon icon-" + name + ' ' + mod)
+    use(xlink:href="./assets/img/spriteSvg.svg#sprite-" + name)
+
+mixin section_heading(text,addClass)
+  -var a = addClass
+  if(!a)
+    h2.heading&attributes(attributes)=text
+  else
+    h2.heading(class=addClass)&attributes(attributes)=text
