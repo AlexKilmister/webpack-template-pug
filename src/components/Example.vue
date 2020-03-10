@@ -7,13 +7,6 @@
 
 <script>
 
-/*
-  !!!
-  Лучший курс по vue ;)
-  Вкусная цена по промокоду: WEBPACK
-  https://tocode.ru/curses/vuejs-s-nylya-do-pro
-*/
-
 export default {
   data () {
     return {
