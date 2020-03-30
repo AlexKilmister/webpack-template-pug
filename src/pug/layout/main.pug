@@ -1,20 +1,11 @@
-include ../utils/mixins
-block variables
-
 doctype html
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    title #{title}
-    meta(name="description", content=description)
-    block head
-
-  body(class=pageClass)
-    .wrapper
-      #app
-        include ../includes/modules/header
-        .content-wrapper
+html(lang="ru-Ru")
+  include ../includes/modules/head
+  block body
+    body(class=pageClass)
+      block wrapper
+        div#app(class=wrapperClass)
+          block header
           block content
-        include ../includes/modules/footer
-
-    block script
+          block footer
+      block scripts

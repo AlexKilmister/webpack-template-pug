@@ -1,16 +1,29 @@
 extends ../layout/main
 
 block variables
-	- var title = 'Webpack + Pug';
-	- var description = 'Description for Webpack + Pug';
-	- var pageClass = 'index-page';
+	-var wrapperClass = 'wrapper wrapper-main'
+	-var pageClass = 'page-index'
+	-var description = 'Анкета Евтин А.Г.';
+
+block title
+	title Анкета
+block description
+	meta(name="description", content=description)
+
+prepend css
+
+block header
+	//include ../includes/modules/header
+
+prepend body
 
 block content
-	section
-		.container
-			+icon('close')
-
-	example-component
+	main.content
 
 
-block script
+
+block footer
+	//include ../includes/modules/footer
+
+
+block scripts

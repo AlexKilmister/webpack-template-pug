@@ -1,19 +1,23 @@
 
 // Font
-$mainFont                : 'RobotoBold', Helvetica, Arial, sans-serif;
+$mainFont                : "Montserrat-Regular", Helvetica, Arial, sans-serif;
 
 // Size
-$mainFontColor           : #101010;
-$mainFontSize            : 16px;
+$browser-context         : 16px;
 $mainFontWeight          : 400;
 $mainLineHeight          : 1.4;
 
-$desktopWidth            : 1280px;
-$smDesktopWidth          : 1024px;
-$tableWidth              : 768px;
-$smTableWidth            : 640px;
-$phoneWidth              : 480px;
-$smPhoneWidth            : 320px;
+$width-xl                : 1200px;
+$width-lg                : 991px;
+$width-md                : 767px;
+$width-sm                : 576px;
+$width-xs                : 479px;
+
+$container-xl            : 1170px;
+$container-lg            : 960px;
+$container-md            : 720px;
+$container-sm            : 540px;
+$container-xs            : 100%;
 
 // Main color
 $default-color           : #ffffff;
@@ -35,3 +39,11 @@ $border-base             : #DCDFE6;
 $border-light            : #E4E7ED;
 $border-lighter          : #EBEEF5;
 $border-lightex          : #F2F6FC;
+
+$color-main             : #11315B;
+$color-second           : #FFD600;
+$color-accent           : #FFD600;
+$color-black            : #000000;
+$color-white            : #ffffff;
+$color-base             : #171717;
+$color-dark             : #42424D;

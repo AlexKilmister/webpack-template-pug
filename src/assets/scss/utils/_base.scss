@@ -7,26 +7,17 @@ html {
 body {
   position: relative;
 	min-width: 320px;
-	color: $mainFontColor;;
+	color: $color-base;
 	overflow-x: hidden;
 	padding: 0;
 	margin: 0 auto;
   font-family: $mainFont;
-  font-size: $mainFontSize;
+  font-size: $browser-context;
   font-weight: $mainFontWeight;
   line-height: $mainLineHeight;
 	background: $default-color;
 	font-smoothing: antialiased;
 	text-size-adjust: none;
-  @media screen and (max-width: $desktopWidth) {
-    font-size: 16px;
-  }
-  @media screen and (max-width: $tableWidth) {
-    font-size: 15px;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    font-size: 14px;
-  }
 }
 
 h1,
@@ -115,15 +106,6 @@ table {
   position: relative;
   margin: 0 auto;
   max-width: $desktopWidth;
-  @media screen and (max-width: $smDesktopWidth) {
-    max-width: $tableWidth;
-  }
-  @media screen and (max-width: $tableWidth) {
-    max-width: $phoneWidth;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    max-width: $smPhoneWidth;
-  }
 }
 
 
