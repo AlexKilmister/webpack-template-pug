@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "postcss-sort-media-queries": "^1.4.23",
+    "pug-bem-plain-loader": "^1.1.5",
     "vue": "^2.6.11"
   }
 }

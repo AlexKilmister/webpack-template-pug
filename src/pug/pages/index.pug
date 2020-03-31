@@ -3,10 +3,10 @@ extends ../layout/main
 block variables
 	-var wrapperClass = 'wrapper wrapper-main'
 	-var pageClass = 'page-index'
-	-var description = 'Анкета Евтин А.Г.';
+	-var description = 'lorem ';
 
 block title
-	title Анкета
+	title Home
 block description
 	meta(name="description", content=description)
 
@@ -19,6 +19,9 @@ prepend body
 
 block content
 	main.content
+		._text
+			| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi deserunt dignissimos et fugiat, impedit iure maiores nam nemo neque nisi non officia pariatur perferendis, placeat porro quod repellat suscipit vero?
+		example-component
 
 
 

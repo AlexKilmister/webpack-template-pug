@@ -51,11 +51,11 @@ module.exports = {
         // this applies to <template lang="pug"> in Vue components
         {
           resourceQuery: /^\?vue/,
-          use: ['pug-plain-loader']
+          use: ['pug-bem-plain-loader']
         },
         // this applies to pug imports inside JavaScript
         {
-          use: ['pug-loader?pretty=true'],
+          use: ['pug-loader?pretty=true','pug-bem-plain-loader'],
         }
       ]
     }, {
