@@ -1,3 +1,5 @@
+window.Vue = require('vue')
+const $ = require('jquery')
 
 // JS
 import './js/'
@@ -8,13 +10,16 @@ import './assets/scss/main.scss'
 // CSS (example)
 // import './assets/css/main.css'
 
-// Vue.js
-window.Vue = require('vue')
 
 // Vue components (for use in html)
 Vue.component('example-component', require('./components/Example.vue').default)
 
 // Vue init
 const app = new Vue({
-  el: '#app'
+  el: '#app',
+  data () {
+    return {
+      message: 'test'
+    }
+  }
 })
