@@ -1,7 +1,8 @@
 // Main js file
 import $ from "jquery"
+import svg4everybody from 'svg4everybody'
 
 $(document).ready(function () {
-	var test = $('.text')
+	svg4everybody()
 
 })

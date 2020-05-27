@@ -37,7 +37,9 @@
     "mini-css-extract-plugin": "^0.8.2",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
+    "postcss-sort-media-queries": "^1.4.23",
     "pug": "^2.0.4",
+    "pug-bem-plain-loader": "^1.1.5",
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.2",
@@ -53,8 +55,7 @@
   },
   "dependencies": {
     "jquery": "^3.5.0",
-    "postcss-sort-media-queries": "^1.4.23",
-    "pug-bem-plain-loader": "^1.1.5",
+    "svg4everybody": "^2.1.9",
     "vue": "^2.6.11"
   }
 }
