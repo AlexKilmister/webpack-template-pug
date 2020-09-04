@@ -169,6 +169,7 @@ module.exports = {
     // Automatic creation any html pages (Don't forget to RERUN dev server)
     ...PAGES.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
+      minify: false,
       filename: `./${page.replace(/\.pug/,'.html')}`
     }))
   ]
