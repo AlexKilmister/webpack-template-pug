@@ -80,7 +80,7 @@ module.exports = {
       test: /\.(png|jpe?g|gif|svg|ico)$/,
       loader: 'file-loader',
       options: {
-        name: '[name].[ext]'
+        name: '[path][name].[ext]'
       }
     }, {
       test: /\.scss$/,
@@ -114,6 +114,7 @@ module.exports = {
     }
     ]
   },
+  context: path.resolve('src'),
   resolve: {
     alias: {
       '~': PATHS.src,
