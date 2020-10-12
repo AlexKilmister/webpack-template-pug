@@ -28,7 +28,8 @@ module.exports = {
     // module: `${PATHS.src}/your-module.js`,
   },
   output: {
-    filename: `${PATHS.assets}js/[name].[hash].js`,
+    //filename: `${PATHS.assets}js/[name].[hash].js`,
+    filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
     publicPath: '/'
   },
@@ -71,7 +72,7 @@ module.exports = {
         }
       }
     }, {
-      test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
       options: {
         name: `${PATHS.assets}fonts/[name].[ext]`
@@ -124,7 +125,8 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: `${PATHS.assets}css/[name].[hash].css`,
+      //filename: `${PATHS.assets}css/[name].[hash].css`,
+      filename: `${PATHS.assets}css/[name].css`,
     }),
     new CopyWebpackPlugin({
       patterns: [
