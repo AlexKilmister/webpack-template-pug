@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin')
+const CssUrlRelativePlugin = require('css-url-relative-plugin')
 
 // Main const
 const PATHS = {
@@ -31,7 +32,7 @@ module.exports = {
     //filename: `${PATHS.assets}js/[name].[hash].js`,
     filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
-    publicPath: '/'
+    publicPath: ''
   },
   optimization: {
     splitChunks: {
@@ -167,6 +168,7 @@ module.exports = {
         //filename: path.join(__dirname, 'src/scss/_sprites.scss')
       }
     }),
+    new CssUrlRelativePlugin(),
 
     // Automatic creation any html pages (Don't forget to RERUN dev server)
     ...PAGES.map(page => new HtmlWebpackPlugin({
