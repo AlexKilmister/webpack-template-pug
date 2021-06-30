@@ -19,7 +19,7 @@ const PATHS = {
 const PAGES_DIR = `${PATHS.src}/pug/pages/`
 const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
 
-module.exports = {
+const baseWebpackConfig = {
   // BASE config
   externals: {
     paths: PATHS
@@ -30,7 +30,7 @@ module.exports = {
   },
   output: {
     //filename: `${PATHS.assets}js/[name].[hash].js`,
-    filename: `${PATHS.assets}js/[name].js`,
+    //filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
     publicPath: ''
   },
@@ -84,35 +84,6 @@ module.exports = {
       options: {
         name: '[path][name].[ext]'
       }
-    }, {
-      test: /\.scss$/,
-      use: [
-        'style-loader',
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: { sourceMap: true }
-        }, {
-          loader: 'postcss-loader',
-          options: { sourceMap: true, config: { path: `./postcss.config.js` } }
-        }, {
-          loader: 'sass-loader',
-          options: { sourceMap: true }
-        }
-      ]
-    }, {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: { sourceMap: true }
-        }, {
-          loader: 'postcss-loader',
-          options: { sourceMap: true, config: { path: `./postcss.config.js` } }
-        }
-      ]
     }
     ]
   },
@@ -125,10 +96,6 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      //filename: `${PATHS.assets}css/[name].[hash].css`,
-      filename: `${PATHS.assets}css/[name].css`,
-    }),
     new CopyWebpackPlugin({
       patterns: [
         { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
@@ -178,3 +145,5 @@ module.exports = {
     }))
   ]
 }
+
+module.exports = {PATHS, baseWebpackConfig}
