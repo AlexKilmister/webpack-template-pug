@@ -2,6 +2,7 @@ const webpack =  require('webpack')
 const {merge} = require('webpack-merge')
 const {PATHS, baseWebpackConfig} = require('./webpack.base.conf')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const LiveReloadPlugin = require('webpack-livereload-plugin')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
@@ -21,7 +22,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           options: { sourceMap: true }
         }, {
           loader: 'postcss-loader',
-          options: { sourceMap: true, config: { path: `./postcss.config.js` } }
+          options: {
+            sourceMap: true,
+            postcssOptions: {
+              config: `./postcss.config.js`
+            }
+          }
         }, {
           loader: 'sass-loader',
           options: { sourceMap: true }
@@ -36,21 +42,39 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           options: { sourceMap: true }
         }, {
           loader: 'postcss-loader',
-          options: { sourceMap: true, config: { path: `./postcss.config.js` } }
+          options: {
+            sourceMap: true,
+            postcssOptions: {
+              config: `./postcss.config.js`
+            }
+          }
         }
       ]
-    }
-    ]
+    }]
   },
   devServer: {
-    contentBase: baseWebpackConfig.externals.paths.dist,
+    //contentBase: baseWebpackConfig.externals.paths.dist,
+    static: {
+      directory: baseWebpackConfig.externals.paths.dist,
+      staticOptions: {},
+    },
+    liveReload: true,
     port: 8081,
-    overlay: {
-      warnings: true,
-      errors: true
-    }
+    client: {
+      logging: "info",
+      overlay: true,
+      progress: true,
+      // overlay: {
+      //   warnings: true,
+      //   errors: true
+      // }
+    },
+
   },
   plugins: [
+    new LiveReloadPlugin({  // LiveReloadPlugin is necessary in order to fix live reloading on the dev side
+      appendScriptTag: true
+    }),
     new MiniCssExtractPlugin({
       //filename: `${PATHS.assets}css/[name].[hash].css`,
       filename: `${PATHS.assets}css/[name].css`,

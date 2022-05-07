@@ -81,6 +81,10 @@ table {
 	align-items: center;
 }
 
+.header{
+	width: 100%;
+}
+
 .footer{
 	width: 100%;
 }
@@ -88,10 +92,6 @@ table {
 .content{
 	width: 100%;
 	flex-grow: 1;
-}
-
-.header{
-	width: 100%;
 }
 
 .img-fluid {
@@ -102,7 +102,6 @@ table {
 
 .container {
   width: 100%;
-  flex: 0 0 auto;
   position: relative;
   margin: 0 auto;
   max-width: $container-xl;

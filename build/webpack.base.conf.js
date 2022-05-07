@@ -1,11 +1,11 @@
 const path = require('path')
 const fs = require('fs')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin')
 const CssUrlRelativePlugin = require('css-url-relative-plugin')
+const ImageminWebpWebpackPlugin= require("imagemin-webp-webpack-plugin")
 
 // Main const
 const PATHS = {
@@ -47,38 +47,43 @@ const baseWebpackConfig = {
     }
   },
   module: {
-    rules: [{
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loader: {
+            scss: 'vue-style-loader!css-loader!sass-loader'
+          }
+        }
+      },
+      {
       test: /\.pug$/,
       oneOf: [
         //this applies to <template lang="pug"> in Vue components
         {
           resourceQuery: /^\?vue/,
-          use: ['pug-bem-plain-loader']
+          use: ['pug-plain-loader']
         },
         //this applies to pug imports inside JavaScript
         {
           use: ['pug-loader?pretty=true']
         }
       ]
-    }, {
+    },
+    {
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: '/node_modules/'
-    }, {
-      test: /\.vue$/,
-      loader: 'vue-loader',
-      options: {
-        loader: {
-          scss: 'vue-style-loader!css-loader!sass-loader'
-        }
-      }
-    }, {
+    },
+    {
       test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
       options: {
         name: `${PATHS.assets}fonts/[name].[ext]`
       }
-    }, {
+    },
+    {
       test: /\.(png|jpe?g|gif|svg|ico)$/,
       loader: 'file-loader',
       options: {
@@ -89,9 +94,11 @@ const baseWebpackConfig = {
   },
   context: path.resolve('src'),
   resolve: {
+    extensions: [ '.tsx', '.ts', '.js', '.vue' ],
     alias: {
       '~': PATHS.src,
-      'vue$': 'vue/dist/vue.min.js',
+      //'vue$': 'vue/dist/vue.min.js',
+      //'vue': '@vue/runtime-dom'
     }
   },
   plugins: [
@@ -136,6 +143,7 @@ const baseWebpackConfig = {
       }
     }),
     new CssUrlRelativePlugin(),
+    new ImageminWebpWebpackPlugin(),
 
     // Automatic creation any html pages (Don't forget to RERUN dev server)
     ...PAGES.map(page => new HtmlWebpackPlugin({

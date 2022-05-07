@@ -1,4 +1,4 @@
-window.Vue = require('vue')
+import { createApp } from 'vue'
 const $ = require('jquery')
 
 // JS
@@ -11,15 +11,8 @@ import './assets/scss/main.scss'
 // import './assets/css/main.css'
 
 
-// Vue components (for use in html)
-Vue.component('example-component', require('./components/Example.vue').default)
+import Example from './components/Example.vue'
 
-// Vue init
-const app = new Vue({
-  el: '#app',
-  data () {
-    return {
-      message: 'test'
-    }
-  }
-})
+const app = createApp(Example).mount('#app2')
+
+

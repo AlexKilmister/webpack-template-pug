@@ -19,7 +19,11 @@ const buildWebpackConfig = merge(baseWebpackConfig, {
           loader: 'css-loader',
         }, {
           loader: 'postcss-loader',
-          options: {config: { path: `./postcss.config.js` } }
+          options: {
+            postcssOptions: {
+              config: `./postcss.config.js`
+            }
+          }
         }, {
           loader: 'sass-loader',
         }
@@ -33,7 +37,11 @@ const buildWebpackConfig = merge(baseWebpackConfig, {
           loader: 'css-loader',
         }, {
           loader: 'postcss-loader',
-          options: { config: { path: `./postcss.config.js` } }
+          options: {
+            postcssOptions: {
+              config: `./postcss.config.js`
+            }
+          }
         }
       ]
     }
