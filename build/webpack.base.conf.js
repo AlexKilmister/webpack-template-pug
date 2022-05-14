@@ -146,11 +146,27 @@ const baseWebpackConfig = {
     new ImageminWebpWebpackPlugin(),
 
     // Automatic creation any html pages (Don't forget to RERUN dev server)
-    ...PAGES.map(page => new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
-      minify: false,
-      filename: `./${page.replace(/\.pug/,'.html')}`
-    }))
+    ...PAGES.map(page => {
+      let dataPage = {}
+      let pathFile = `${PAGES_DIR}${page.replace(/\.pug/, '.json')}`
+
+      try {
+        if (fs.existsSync(pathFile)) {
+          dataPage = JSON.parse(fs.readFileSync(`${PAGES_DIR}${page.replace(/\.pug/,'.json')}`, 'utf8'))
+        }
+      } catch(err) {
+        console.error(err)
+      }
+
+      return new HtmlWebpackPlugin({
+        template: `${PAGES_DIR}/${page}`,
+        minify: false,
+        inject: 'head',
+        scriptLoading: 'blocking', //'blocking'|'defer'|'module'
+        filename: `./${page.replace(/\.pug/,'.html')}`,
+        data: dataPage
+      })
+    })
   ]
 }
 

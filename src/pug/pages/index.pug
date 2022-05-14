@@ -1,25 +1,31 @@
 extends ../layout/main
 
 block variables
+	-var { data } = htmlWebpackPlugin.options
 	-var wrapperClass = 'wrapper'
 	-var pageClass = ''
-	-var description = '';
+	-var description = ''
+	-var page = data.name
+
 
 block title
-	title Home
+	title= page
 block description
 	meta(name="description", content=description)
 
 prepend css
 
 block header
-	//include ../includes/modules/header
+	include ../includes/modules/header
 
 prepend body
 
 block content
 	main.content
 		.container
+			h1
+				| #{page}
+			include ../includes/templates/about.html
 			.swiper.test
 				.swiper-wrapper
 					-for(var i=0; i < 10; i++)

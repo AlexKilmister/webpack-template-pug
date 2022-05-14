@@ -1,0 +1,36 @@
+extends ../layout/main
+
+block variables
+	-var {data} = htmlWebpackPlugin.options
+		-var wrapperClass = 'wrapper'
+		-var pageClass = ''
+		-var description = ''
+		-var page = data.name
+
+
+
+block title
+	title= page
+block description
+	meta(name="description", content=description)
+
+prepend css
+
+block header
+	include ../includes/modules/header
+
+prepend body
+
+block content
+	main.content
+		.container
+			h1
+				| #{page}
+
+
+
+block footer
+	//include ../includes/modules/footer
+
+
+block scripts
