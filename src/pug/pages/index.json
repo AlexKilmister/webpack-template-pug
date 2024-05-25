@@ -1,4 +1,5 @@
 {
 	"header": "home header",
-	"name": "Home"
+	"name": "Home",
+	"message": "example message"
 }

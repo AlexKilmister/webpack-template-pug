@@ -79,6 +79,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       //filename: `${PATHS.assets}css/[name].[hash].css`,
       filename: `${PATHS.assets}css/[name].css`,
     }),
+    // Define Bundler Build Feature Flags
+    new webpack.DefinePlugin({
+      // Drop Options API from bundle
+      __VUE_OPTIONS_API__: 'true',
+      __VUE_PROD_DEVTOOLS__: 'false',
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false'
+    }),
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map',
       // filename: '[name].js.map',

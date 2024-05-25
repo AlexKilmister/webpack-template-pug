@@ -13,7 +13,6 @@ const buildWebpackConfig = merge(baseWebpackConfig, {
     rules: [{
       test: /\.scss$/,
       use: [
-        'style-loader',
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
@@ -31,7 +30,6 @@ const buildWebpackConfig = merge(baseWebpackConfig, {
     }, {
       test: /\.css$/,
       use: [
-        'style-loader',
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',

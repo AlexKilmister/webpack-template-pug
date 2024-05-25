@@ -102,7 +102,6 @@ const baseWebpackConfig = {
     }
   },
   plugins: [
-    new VueLoaderPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
@@ -166,7 +165,8 @@ const baseWebpackConfig = {
         filename: `./${page.replace(/\.pug/,'.html')}`,
         data: dataPage
       })
-    })
+    }),
+    new VueLoaderPlugin(),
   ]
 }
 

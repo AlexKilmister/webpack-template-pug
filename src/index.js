@@ -13,6 +13,9 @@ import './js/'
 
 import Example from './components/Example.vue'
 
-const app = createApp(Example).mount('#app2')
+window.addEventListener('load', () => {
+	const app = createApp(Example).mount('#app2')
+})
+
 
 

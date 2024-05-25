@@ -8,6 +8,7 @@ block variables
 	-var page = data.name
 
 
+
 block title
 	title= page
 block description
@@ -35,8 +36,9 @@ block content
 									source(data-srcset="images/c" + (i+1) + ".webp 1x, images/c" + (i+1) + ".webp 2x" type="image/webp")
 									source(data-srcset="images/c" + (i+1) + ".jpg 1x, images/c" + (i+1) + ".jpg 2x" type="image/jpeg")
 									img.img-fluid.js-lazy(data-src="images/c" + (i+1) + ".jpg" src="data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA" alt="" width="1920" height="1080")
+			div
+				| #{data.message}
 			#app2
-				| {{message}}
 				example-component
 
 
